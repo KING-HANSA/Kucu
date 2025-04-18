@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<!-- 
+	This is a property of Ashfaq Khajudeen 
+ -->
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv='cache-control' content='no-cache'>
+	<meta http-equiv='expires' content='0'>
+	<meta http-equiv='pragma' content='no-cache'>
+	<link rel="shortcut icon" href="/assets/components/fav.png" type="image/x-icon">
+	<title>PickMe Avurudu Game</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Mali:wght@600&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+	</style>
+
+
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+	<script type="text/javascript" src="js/boot.js"></script>
+	<script type="text/javascript" src="js/preload.js"></script>
+	<script type="text/javascript" src="js/mainMenu.js"></script>
+	<script type="text/javascript" src="js/connection.js"></script>
+	<script type="text/javascript" src="js/game1.js"></script>
+	<script type="text/javascript" src="js/game2.js"></script>
+	<script type="text/javascript" src="js/game3.js"></script>
+	<script type="text/javascript" src="js/leaderBoard.js"></script>
+	<script type="text/javascript" src="js/gameOver1.js"></script>
+	<script type="text/javascript" src="js/gameOver2.js"></script>
+	<script type="text/javascript" src="js/gameOver3.js"></script>
+	<script type="text/javascript" src="js/gameStart1.js"></script>
+	<script type="text/javascript" src="js/gameStart2.js"></script>
+	<script type="text/javascript" src="js/gameStart3.js"></script>
+	<script type="text/javascript" src="js/cred.js"></script>
+
+	<!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+	<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+
+	<!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+
+	<!-- Add Firebase products that you want to use -->
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+	<script type="text/javascript">
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+	</script>
+	<style type="text/css">
+		body {
+			overflow: hidden;
+
+		}
+
+		::-webkit-scrollbar {
+			width: 5px;
+			height: 5px
+		}
+
+		::-webkit-scrollbar-button {
+			background: #ccc
+		}
+
+		::-webkit-scrollbar-track-piece {
+			background: #ccc
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: rgb(255, 153, 0)
+		}
+
+		.center {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			align-self: center;
+			align-content: center;
+			margin: auto;
+		}
+	</style>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+		integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+		crossorigin="anonymous"></script>
+
+</head>
+
+<body class="center">
+
+
+	<!-- Button trigger modal -->
+	<button type="button" class=" d-none btn btn-primary" data-toggle="modal" id="btn-exit"
+		data-target="#exit"></button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="exit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body p-2  ">
+
+					<div class="modal-header text-center ">
+						<img class="m-auto p-0 m-0" src="/assets/images/bg/E-Awrudu-Logo.png" width="300">
+
+					</div>
+					<p class="  m-auto  text-center">Powered by <strong class="text-center text-danger">PickMe
+							Engineering</strong></p>
+
+					<div class="modal-body text-center ">
+
+						<h5 class="modal-title m-auto" style="font-family: mali ;">
+							Please login via G-Mail to
+							participate <br>
+							<strong>PickMe E-Avurudu</strong>
+						</h5>
+					</div>
+
+					<div class="modal-footer row justify-content-center  border-0">
+						<button type="button" class="btn btn-success " id="login-btn">Login</button>
+						<button type="button" class="btn btn-secondary" onclick="window.location.reload()"
+							data-dismiss="modal">close</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+
+	<div>
+
+		<script type="text/javascript">
+			function eventFire(el, etype) {
+				if (el.fireEvent) {
+					el.fireEvent("on" + etype);
+				} else {
+					var evObj = document.createEvent("Events");
+					evObj.initEvent(etype, true, false);
+					el.dispatchEvent(evObj);
+				}
+
+			}
+			if (localStorage.getItem('pickme-avurudu-game') == 1 && localStorage.getItem('name') != null)
+				(function () {
+					console.log("v1.0.1");
+					//Create a new game that fills the screen
+					game = new Phaser.Game(1280, 900, Phaser.CANVAS);
+					//Add all states
+					// Stretch to fill
+					game.state.add("Boot", Boot);
+					game.state.add("Preload", Preload);
+					game.state.add("MainMenu", MainMenu);
+					game.state.add("LeaderBoard", LeaderBoard);
+					game.state.add("GameOver1", GameOver1);
+					game.state.add("GameOver2", GameOver2);
+					game.state.add("GameOver3", GameOver3);
+					game.state.add("Game1", Game1);
+					game.state.add("Game3", Game3);
+					game.state.add("Game2", Game2);
+					game.state.add("StartGame1", StartGame1);
+					game.state.add("StartGame3", StartGame3);
+					game.state.add("StartGame2", StartGame2);
+					//Start the first state
+					game.state.start("Boot");
+
+
+				})();
+			else
+				if (window.localStorage.getItem('pickme-avurudu-game') != 1) {
+					window.localStorage.clear();
+					eventFire(document.getElementById("btn-exit"), "click");
+					window.document.getElementById('login-btn').addEventListener(
+						'click', function () {
+							window.localStorage.setItem('pickme-avurudu-game', 1)
+							googleSignInPopup(googleProvider());
+						}
+					)
+				} else {
+					if (localStorage.getItem('name') == null) {
+						eventFire(document.getElementById("btn-exit"), "click");
+
+						window.document.getElementById('login-btn').addEventListener(
+							'click', function () {
+								window.localStorage.setItem('pickme-avurudu-game', 1)
+								googleSignInPopup(googleProvider());
+							}
+						)
+					}
+				}
+
+
+		</script>
+
+
+	</div>
+	<!-- Button trigger modal -->
+	<button type="button" class=" d-none btn btn-primary" data-toggle="modal" id="btn"
+		data-target="#leaderboard"></button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="leaderboard" tabindex="-1" role="dialog" aria-labelledby="leaderboard"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+
+				<div class="modal-body p-2 small ">
+					<div>
+						<h3 class="w-100 text-center muted my-2 py-0">E-Avrudu Leader Board</h3>
+
+						<div class="align-items-end border d-flex form-group py-3 shadow-sm"
+							style="border-radius: 10px; height: 220px; background: linear-gradient(180deg, #e3ffe7 0%, #d9e7ff 100%);"
+							id="top-ranks">
+						</div>
+
+						<h6 class="w-100 text-center muted my-1" id="my-rank">You rank is</h6>
+
+						<div id="user-rank" class="form-group form-row mx-2 py-2 px-1 border-0  shadow-sm "
+							style="border-radius: 10px;background-image: linear-gradient(180deg, #fcf4dd 0%, #fffbe7 100%); box-shadow: 0px 2px 8px 2px #000000;">
+						</div>
+
+						<div style="height: 400px; overflow-y: scroll; margin-right: -2px;  padding-right: -5px; scrollbar-width: thin  !important;"
+							class="p-1" id="users-ranks"></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
