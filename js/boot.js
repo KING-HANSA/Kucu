@@ -4,10 +4,6 @@ var Boot = function (game, firebase) {
 
 Boot.prototype = {
 
-	preload: function () {
-		this.game.load.spritesheet('loading', '/assets/components/loading.png', 199, 199);
-
-	},
 
 	create: function () {
 
